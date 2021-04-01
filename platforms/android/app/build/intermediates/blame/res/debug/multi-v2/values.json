@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/var/www/app/android/biblia_arc/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/var/www/app/android/bibliaarc/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
-                {
-                    "source": "/var/www/app/android/biblia_arc/platforms/android/app/build/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,198,311,392,496,604,724",
-                        "endColumns": "142,112,80,103,107,119,101",
-                        "endOffsets": "193,306,387,491,599,719,821"
-                    },
-                    "to": {
-                        "startLines": "269,271,272,273,274,275,276",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "19226,19451,19564,19645,19749,19857,19977",
-                        "endColumns": "142,112,80,103,107,119,101",
-                        "endOffsets": "19364,19559,19640,19744,19852,19972,20074"
-                    }
-                },
                 {
                     "source": "/home/miqueias/.gradle/caches/transforms-2/files-2.1/632486dd5fe09fc419b241de4620e909/play-services-basement-11.6.2/res/values/values.xml",
                     "from": {
@@ -55,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "/var/www/app/android/bibliaarc/platforms/android/app/build/generated/res/google-services/debug/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,198,311,392,496,604,724",
+                        "endColumns": "142,112,80,103,107,119,101",
+                        "endOffsets": "193,306,387,491,599,719,821"
+                    },
+                    "to": {
+                        "startLines": "269,271,272,273,274,275,276",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "19226,19451,19564,19645,19749,19857,19977",
+                        "endColumns": "142,112,80,103,107,119,101",
+                        "endOffsets": "19364,19559,19640,19744,19852,19972,20074"
+                    }
+                },
+                {
                     "source": "/home/miqueias/.gradle/caches/transforms-2/files-2.1/2687d8b11493d1a50c41564609ebe9c3/play-services-ads-lite-11.6.2/res/values/values.xml",
                     "from": {
                         "startLines": "4,14",
@@ -71,23 +71,6 @@
                         "endLines": "1648,1782",
                         "endColumns": "8,20",
                         "endOffsets": "111616,122929"
-                    }
-                },
-                {
-                    "source": "/var/www/app/android/biblia_arc/platforms/android/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "4,2,3",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "170,55,111",
-                        "endColumns": "63,55,58",
-                        "endOffsets": "229,106,165"
-                    },
-                    "to": {
-                        "startLines": "250,251,277",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "16889,16953,20079",
-                        "endColumns": "63,55,58",
-                        "endOffsets": "16948,17004,20133"
                     }
                 },
                 {
@@ -215,6 +198,23 @@
                         "endLines": "33,34,35,36,37,38,39,40,252,253,254,255,256,257,258,260,261,262,263,264,265,266,267,268,1935,1999",
                         "endColumns": "89,79,89,89,79,80,79,79,104,180,124,106,179,122,102,187,104,180,124,174,147,62,61,78,20,20",
                         "endOffsets": "2352,2432,2522,2612,2692,2773,2853,2933,17109,17290,17415,17522,17702,17825,17928,18283,18388,18569,18694,18869,19017,19080,19142,19221,137903,142416"
+                    }
+                },
+                {
+                    "source": "/var/www/app/android/bibliaarc/platforms/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "170,55,111",
+                        "endColumns": "63,55,58",
+                        "endOffsets": "229,106,165"
+                    },
+                    "to": {
+                        "startLines": "250,251,277",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "16889,16953,20079",
+                        "endColumns": "63,55,58",
+                        "endOffsets": "16948,17004,20133"
                     }
                 }
             ]
