@@ -1,4 +1,4 @@
-#Wed Mar 31 22:03:40 BRT 2021
+#Fri Apr 02 19:42:35 BRT 2021
 base.0=/var/www/app/android/bibliaarc/platforms/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
