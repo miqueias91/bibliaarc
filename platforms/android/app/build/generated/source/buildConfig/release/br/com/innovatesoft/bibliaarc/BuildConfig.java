@@ -7,6 +7,6 @@ public final class BuildConfig {
   public static final boolean DEBUG = false;
   public static final String APPLICATION_ID = "br.com.innovatesoft.bibliaarc";
   public static final String BUILD_TYPE = "release";
-  public static final int VERSION_CODE = 10016;
-  public static final String VERSION_NAME = "1.0.16";
+  public static final int VERSION_CODE = 10017;
+  public static final String VERSION_NAME = "1.0.17";
 }
