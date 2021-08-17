@@ -3,8 +3,8 @@
     package="br.com.innovatesoft.bibliaarc"
     android:hardwareAccelerated="true"
     android:targetSandboxVersion="2"
-    android:versionCode="10017"
-    android:versionName="1.0.17" >
+    android:versionCode="10018"
+    android:versionName="1.0.18" >
 
     <uses-sdk
         android:minSdkVersion="19"
