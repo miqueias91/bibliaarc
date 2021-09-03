@@ -101,27 +101,7 @@ window.fn.hideDialog = function (id) {
 var app = {
   // Application Constructor
   initialize: function() {
-    var nome = window.localStorage.getItem("nome") ? window.localStorage.getItem("nome") : '';
-    var usuario = window.localStorage.getItem("usuario") ? window.localStorage.getItem("usuario") : '';
-    var email = window.localStorage.getItem("email") ? window.localStorage.getItem("email") : '';
-    var celular = window.localStorage.getItem("celular") ? window.localStorage.getItem("celular") : '';
-    var religiao = window.localStorage.getItem("religiao") ? window.localStorage.getItem("religiao") : '';
-
-    if(nome == '' || usuario == '' || email == '' || celular == '' || religiao == ''){
-      ons.notification.alert(
-        'Complete suas informações para uma melhor experiência no seu aplicativo!',
-        {title: 'Atenção'}
-      );
-      fn.pushPage({'id': 'minhaConfiguracao.html', 'title': 'Minha Configuração'});
-    }
-    else{      
-      if (JSON.parse(ultimo_capitulo_lido)) {
-        fn.pushPage({'id': 'textoLivro.html', 'title': ultimo_livro_lido_abr+'||'+ultimo_livro_lido+'||200||'+ultimo_capitulo_lido});
-      }
-      else{
-        fn.pushPage({'id': 'textoLivro.html', 'title': 'Gn||Gênesis||50||1'});
-      }
-    }
+    fn.showDialog('modal-aguarde');
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     document.addEventListener('admob.banner.events.LOAD_FAIL', function(event) {
       // alert(JSON.stringify(event))
@@ -143,12 +123,37 @@ var app = {
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
+    this.init();
     this.firebase();
     this.oneSignal();
     this.getIds();
-    this.buscaDadosUsuario();
-    this.admob();
-    this.buscaNotificacoes();
+  },
+  init: function() {
+    var timeoutID = 0;
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(function() { fn.hideDialog('modal-aguarde') }, 100);
+
+    var nome = window.localStorage.getItem("nome") ? window.localStorage.getItem("nome") : '';
+    var usuario = window.localStorage.getItem("usuario") ? window.localStorage.getItem("usuario") : '';
+    var email = window.localStorage.getItem("email") ? window.localStorage.getItem("email") : '';
+    var celular = window.localStorage.getItem("celular") ? window.localStorage.getItem("celular") : '';
+    var religiao = window.localStorage.getItem("religiao") ? window.localStorage.getItem("religiao") : '';
+
+    /*if(nome == '' || usuario == '' || email == '' || celular == '' || religiao == ''){
+      ons.notification.alert(
+        'Complete suas informações para uma melhor experiência no seu aplicativo!',
+        {title: 'Atenção'}
+      );
+      fn.pushPage({'id': 'minhaConfiguracao.html', 'title': 'Minha Configuração'});
+    }
+    else{*/
+      if (JSON.parse(ultimo_capitulo_lido)) {
+        fn.pushPage({'id': 'textoLivro.html', 'title': ultimo_livro_lido_abr+'||'+ultimo_livro_lido+'||200||'+ultimo_capitulo_lido});
+      }
+      else{
+        fn.pushPage({'id': 'textoLivro.html', 'title': 'Gn||Gênesis||50||1'});
+      }
+    //}
   },
   oneSignal: function() {
     window.plugins.OneSignal
@@ -221,7 +226,7 @@ var app = {
       return false;   
     }
     return false;
-  },  
+  }, 
   buscaFavoritoHinario: function(hinario, id_hinario) {
     var array = JSON.parse(localStorage.getItem('lista-favorito-hinario'));
     if (array) {
@@ -753,7 +758,7 @@ var app = {
       xmlhttp.open("GET", "js/harpa.json", true);
       xmlhttp.send();
     }
-  },
+  },  
   pesquisaBiblia: function(term){
     var versaoId = versaoId || "arc";
 
@@ -829,17 +834,19 @@ var app = {
     window.plugins.OneSignal.getIds(function(ids) {
       window.localStorage.setItem('playerID', ids.userId);
       window.localStorage.setItem('pushToken', ids.pushToken);
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          window.localStorage.setItem('uid',uid);
+          app.cadastraUser();
+        }
+      });
     });
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        window.localStorage.setItem('uid',uid);
-      }
-    });
 
-    this.cadastraUser();
+
   },
   cadastraUser: function() {
     var playerID = window.localStorage.getItem('playerID');
@@ -860,8 +867,10 @@ var app = {
           'app': 'arc',
         },
         error: function(e) {
+          app.buscaDadosUsuario();
         },
         success: function(a) {
+          app.buscaDadosUsuario();
         },
       });
     }
@@ -1172,10 +1181,14 @@ var app = {
         url: "https://www.innovatesoft.com.br/webservice/app/buscaDadosUsuario.php",
         dataType: 'json',
         type: 'POST',
-        async: true,
         data: {
           'uid': uid,
           'userId': playerID,
+        },
+        error: function(e) {
+          app.admob();
+          //app.init();
+          app.buscaNotificacoes();
         },
         success: function(a) {
           if (a) {
@@ -1196,6 +1209,9 @@ var app = {
             }
             window.localStorage.setItem("versao_pro", a['final_versao_pro']);
           }
+          app.admob();
+          //app.init();
+          app.buscaNotificacoes();
         },
       });
     }
